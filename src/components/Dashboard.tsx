@@ -41,14 +41,14 @@ export default function Dashboard({ location, onReset }: Props) {
               Ramadan Timings
             </h1>
             {location.city && (
-              <p className="text-bark/45 text-[0.8125rem] mt-1">{location.city}</p>
+              <p className="text-bark/85 text-[0.8125rem] mt-1">{location.city}</p>
             )}
           </div>
           <button
             onClick={handleReset}
-            className="text-[0.75rem] text-bark/40 hover:text-bark border border-bark/8 rounded-lg px-3.5 py-2 hover:border-bark/20 transition-all duration-250"
+            className="text-[0.75rem] text-bark/80 hover:text-bark border border-bark/8 rounded-lg px-3.5 py-2 hover:border-bark/20 hover:shadow-soft transition-all duration-250"
           >
-            Change location
+           <strong>Change location</strong>
           </button>
         </header>
 
@@ -58,7 +58,7 @@ export default function Dashboard({ location, onReset }: Props) {
 
         {upcoming.length > 0 && (
           <section className="mb-10">
-            <h2 className="text-[0.6875rem] font-medium text-bark/40 uppercase tracking-widest mb-4 px-0.5 animate-slide-up opacity-0 [animation-fill-mode:forwards]" style={{ animationDelay: "120ms" }}>
+            <h2 className="text-[0.6875rem] font-medium text-bark/60 uppercase tracking-widest mb-4 px-0.5 animate-slide-up opacity-0 [animation-fill-mode:forwards]" style={{ animationDelay: "120ms" }}>
               Next 3 days
             </h2>
             <div className="space-y-2.5">
@@ -81,7 +81,7 @@ export default function Dashboard({ location, onReset }: Props) {
         </button>
 
         <p className="text-center text-bark/20 text-[0.6875rem] mt-10 tracking-wide">
-          Islah-e-Nafs · Hanafi · Karachi method
+          Islah-e-Nafs · Hanafi 
         </p>
       </div>
     </div>

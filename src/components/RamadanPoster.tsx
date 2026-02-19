@@ -3,7 +3,7 @@
 import { useMemo, useState, useRef } from "react";
 import { Location } from "@/lib/types";
 import { getRamadanTimings } from "@/lib/prayer";
-import { RAMADAN_START, RAMADAN_YEAR, TOTAL_DAYS, getRamadanDates, formatDateReadable } from "@/lib/ramadan";
+import { RAMADAN_YEAR, TOTAL_DAYS, getRamadanDates, formatDateCompact } from "@/lib/ramadan";
 import Spinner from "./Spinner";
 
 interface Props {
@@ -42,18 +42,13 @@ export default function RamadanPoster({ location, onBack }: Props) {
     }
   }
 
-  const startStr = formatDateReadable(RAMADAN_START);
-  const endDate = new Date(RAMADAN_START);
-  endDate.setDate(endDate.getDate() + TOTAL_DAYS - 1);
-  const endStr = formatDateReadable(endDate);
-
   return (
     <div className="min-h-screen px-5 py-8">
       <div className="max-w-3xl mx-auto">
         <div className="flex items-center justify-between mb-6 animate-fade-in">
           <button
             onClick={onBack}
-            className="text-bark/45 hover:text-bark flex items-center gap-1.5 text-[0.8125rem] transition-colors duration-250"
+            className="text-bark/85 hover:text-bark flex items-center gap-1.5 text-[0.8125rem] transition-colors duration-250"
           >
             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
@@ -83,20 +78,16 @@ export default function RamadanPoster({ location, onBack }: Props) {
 
         <div ref={posterRef} className="bg-cream rounded-[1.25rem] shadow-card overflow-hidden relative border border-gold/10 animate-reveal">
           <div className="poster-pattern" />
-          <div className="relative z-10 p-8 md:p-12">
-            <div className="text-center mb-10 opacity-0 animate-fade-in [animation-fill-mode:forwards]" style={{ animationDelay: "0.25s" }}>
-              <span className="inline-block px-4 py-1.5 bg-teal/8 rounded-full mb-4 border border-teal/10 animate-breathe">
-                <span className="text-teal text-[0.75rem] font-medium tracking-widest uppercase">Ramadan Mubarak</span>
-              </span>
-              <h1 className="font-display text-2xl md:text-3xl font-semibold text-bark tracking-tight mb-2">
-                Ramadan {RAMADAN_YEAR} AH
+          <div className="relative z-10 p-5 md:p-6">
+            <div className="text-center mb-5 opacity-0 animate-fade-in [animation-fill-mode:forwards]" style={{ animationDelay: "0.25s" }}>
+              <h1 className="font-display text-xl md:text-2xl font-semibold text-bark tracking-tight mb-0.5">
+                RAMADAN CALENDAR
               </h1>
-              {location.city && <p className="text-black/45 text-[0.9375rem]">{location.city}</p>}
-              <p className="text-bark/30 text-[0.75rem] mt-2 tracking-wide">
-                </p>
+              <p className="text-bark/75 text-[0.875rem]">{RAMADAN_YEAR} A.H / 2026 A.D</p>
+              {location.city && <p className="text-bark/85 text-[0.75rem] mt-1">{location.city} </p>}
             </div>
 
-            <div className="relative overflow-x-auto -mx-2">
+            <div className="relative overflow-x-auto -mx-1">
               <div
                 className="absolute inset-0 z-[1] flex items-center justify-center pointer-events-none"
                 aria-hidden
@@ -105,40 +96,43 @@ export default function RamadanPoster({ location, onBack }: Props) {
                 <img
                   src="/islah-logo.png"
                   alt=""
-                  className="max-w-[280px] w-[70%] h-auto opacity-[0.11] object-contain"
+                  className="max-w-[400px] w-[90%] h-auto opacity-[0.1] object-contain"
                 />
               </div>
-              <table className="w-full text-[0.875rem] relative z-10">
+              <table className="w-full text-[0.6875rem] md:text-[0.75rem] relative z-10">
                 <thead>
-                  <tr className="bg-teal text-white">
-                    <th className="py-3 px-3 text-center font-semibold rounded-tl-xl w-14">Roza</th>
-                    <th className="py-3 px-3 text-left font-semibold">Date</th>
-                    <th className="py-3 px-3 text-left font-semibold">Day</th>
-                    <th className="py-3 px-3 text-center font-semibold">Sehri</th>
-                    <th className="py-3 px-3 text-center font-semibold rounded-tr-xl">Iftar</th>
+                  <tr>
+                    <th className="py-1.5 px-2 text-center font-semibold rounded-tl-lg bg-gold/35 text-bark w-12">RAMADAN</th>
+                    <th className="py-1.5 px-2 text-left font-semibold rounded-t bg-gold/35 text-bark">DATE</th>
+                    <th className="py-1.5 px-2 text-left font-semibold rounded-t bg-gold/35 text-bark">DAY</th>
+                    <th className="py-1.5 px-2 text-center font-semibold rounded-t bg-gold/35 text-bark">SEHRI</th>
+                    <th className="py-1.5 px-2 text-center font-semibold rounded-tr-lg bg-gold/35 text-bark">IFTAR</th>
                   </tr>
                 </thead>
                 <tbody>
                   {rows.map((row) => {
                     const isFriday = row.dayName === "Friday";
+                    const isAltRow = row.roza % 2 === 0;
                     return (
                       <tr
                         key={row.roza}
-                        className={`border-b border-bark/5 transition-colors ${
+                        className={`border-b border-bark/5 ${
                           isFriday
-                            ? "bg-gold/10 font-medium"
-                            : row.roza % 2 === 0
-                            ? "bg-white/50"
+                            ? "bg-gold/15 font-medium"
+                            : isAltRow
+                            ? "bg-teal/10"
                             : "bg-transparent"
                         }`}
                       >
-                        <td className="py-3 px-3 text-center text-bark/70 font-semibold">{row.roza}</td>
-                        <td className="py-3 px-3 text-bark/65 text-[0.8125rem]">{row.readable}</td>
-                        <td className={`py-3 px-3 ${isFriday ? "text-teal font-semibold" : "text-bark/65"}`}>
-                          {row.dayName.slice(0, 3)}
+                        <td className="py-1 px-2 text-center text-bark/75 font-semibold">
+                          {String(row.roza).padStart(2, "0")} <span className="font-bold">ROZA</span>
                         </td>
-                        <td className="py-3 px-3 text-center text-teal font-semibold">{row.fajr}</td>
-                        <td className="py-3 px-3 text-center text-gold-dark font-semibold">{row.maghrib}</td>
+                        <td className="py-1 px-2 text-blue/70">{formatDateCompact(row.date)}</td>
+                        <td className={`py-1 px-2 ${isFriday ? "text-teal font-semibold" : "text-gold-dark/90 font-semibold"}`}>
+                          {row.dayName.toUpperCase()}
+                        </td>
+                        <td className="py-1 px-2 text-center text-teal font-semibold">{row.fajr}</td>
+                        <td className="py-1 px-2 text-center text-gold-dark font-semibold">{row.maghrib}</td>
                       </tr>
                     );
                   })}
@@ -146,45 +140,34 @@ export default function RamadanPoster({ location, onBack }: Props) {
               </table>
             </div>
 
-            <div className="mt-12 pt-8 border-t border-bark/8 text-center">
-              <div className="mb-4">
+            <div className="mt-5 pt-4 space-y-3">
+              <div className="rounded py-1.5 px-3 bg-gold/20 border border-gold/30 opacity-0 animate-fade-in-fast [animation-fill-mode:forwards]" style={{ animationDelay: "0.2s" }}>
+                <p className="text-[0.65rem] font-semibold text-bark/80 tracking-wide uppercase">Dua for Suhur</p>
+                <p className="text-bark text-[0.75rem] mt-0.5 leading-relaxed font-[inherit]" dir="rtl">وَبِصَوْمٍ غَدٍ نَّوَيْتُ مِنْ شَهْرِ رَمَضَانَ</p>
+              </div>
+              <div className="rounded py-1.5 px-3 bg-gold/20 border border-gold/30 opacity-0 animate-fade-in-fast [animation-fill-mode:forwards]" style={{ animationDelay: "0.35s" }}>
+                <p className="text-[0.65rem] font-semibold text-bark/80 tracking-wide uppercase">Dua for Iftar</p>
+                <p className="text-bark text-[0.75rem] mt-0.5 leading-relaxed font-[inherit]" dir="rtl">اللَّهُمَّ إِنِّي لَكَ صُمْتُ وَبِكَ أَمَنْتُ وَعَلَيْكَ تَوَكَّلْتُ وَعَلَى رِزْقِكَ أَفْطَرْتُ</p>
+              </div>
+            </div>
+
+            <div className="mt-5 pt-4 border-t border-bark/8 text-center opacity-0 animate-fade-in-fast [animation-fill-mode:forwards]" style={{ animationDelay: "0.45s" }}>
+              <div className="flex items-center justify-center gap-4">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src="/islah-logo.png"
+                  src="/islah-log.png"
                   alt="Islah-e-Nafs"
-                  className="h-14 mx-auto"
+                  className="h-24"
                   onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }}
                 />
-              </div>
-              <p className="font-display text-bark font-semibold text-lg tracking-tight">Islah-e-Nafs</p>
-              <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 mt-4">
-                <a
-                  href="https://instagram.com/islahenafs"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-bark/55 text-[0.8125rem] tracking-wide transition-all duration-250 hover:text-teal hover:scale-105 opacity-0 animate-fade-in [animation-fill-mode:forwards]"
-                  style={{ animationDelay: "0.5s" }}
-                >
-                  <span className="font-medium text-gold-dark/80">Instagram</span> @islahenafs
-                </a>
-                <a
-                  href="https://youtube.com/@islah-e-Nafs"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-bark/55 text-[0.8125rem] tracking-wide transition-all duration-250 hover:text-teal hover:scale-105 opacity-0 animate-fade-in [animation-fill-mode:forwards]"
-                  style={{ animationDelay: "0.6s" }}
-                >
-                  <span className="font-medium text-gold-dark/80">YouTube</span> @islah-e-Nafs
-                </a>
-                <a
-                  href="https://islahenafs.org"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-bark/55 text-[0.8125rem] tracking-wide transition-all duration-250 hover:text-teal hover:scale-105 opacity-0 animate-fade-in [animation-fill-mode:forwards]"
-                  style={{ animationDelay: "0.7s" }}
-                >
-                  <span className="font-medium text-gold-dark/80">Website</span> islahenafs.org
-                </a>
+                <div className="text-left">
+                  <p className="font-display text-bark font-semibold text-sm tracking-tight">Islah-e-Nafs</p>
+                  <div className="flex flex-wrap gap-x-4 gap-y-0.5 mt-0.5 text-[0.7rem] text-bark/55">
+                    <a href="https://instagram.com/islahenafs" target="_blank" rel="noopener noreferrer" className="hover:text-teal transition-colors duration-250">Instagram: @islahenafs</a>
+                    <a href="https://youtube.com/@islah-e-Nafs" target="_blank" rel="noopener noreferrer" className="hover:text-teal transition-colors duration-250">YouTube: @islah-e-Nafs</a>
+                    <a href="https://islahenafs.org" target="_blank" rel="noopener noreferrer" className="hover:text-teal transition-colors duration-250">Website: islahenafs.org</a>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

@@ -52,6 +52,12 @@ export function formatDateReadable(date: Date): string {
   });
 }
 
+export function formatDateCompact(date: Date): string {
+  const day = date.getDate();
+  const month = date.toLocaleDateString("en-US", { month: "long" }).toUpperCase();
+  return `${day} ${month}`;
+}
+
 export function getDayName(date: Date): string {
   return date.toLocaleDateString("en-US", { weekday: "long" });
 }

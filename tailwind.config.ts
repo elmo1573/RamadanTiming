@@ -39,7 +39,9 @@ const config: Config = {
       },
       animation: {
         "fade-in": "fadeIn 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards",
+        "fade-in-fast": "fadeIn 0.4s cubic-bezier(0.22, 1, 0.36, 1) forwards",
         "slide-up": "slideUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards",
+        "slide-down": "slideDown 0.3s cubic-bezier(0.22, 1, 0.36, 1) forwards",
         "reveal": "reveal 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards",
         "breathe": "breathe 4s ease-in-out infinite",
         "glow": "glow 3s ease-in-out infinite",
@@ -53,6 +55,10 @@ const config: Config = {
         },
         slideUp: {
           "0%": { opacity: "0", transform: "translateY(16px)" },
+          "100%": { opacity: "1", transform: "translateY(0)" },
+        },
+        slideDown: {
+          "0%": { opacity: "0", transform: "translateY(-6px)" },
           "100%": { opacity: "1", transform: "translateY(0)" },
         },
         reveal: {

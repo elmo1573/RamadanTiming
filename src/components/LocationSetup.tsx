@@ -83,7 +83,7 @@ export default function LocationSetup({ onReady }: Props) {
           </div>
 
           {error && (
-            <div className="mb-5 px-4 py-3 bg-red-50/80 border border-red-100 rounded-xl text-red-700 text-[0.8125rem] leading-snug">
+            <div className="mb-5 px-4 py-3 bg-red-50/80 border border-red-100 rounded-xl text-red-700 text-[0.8125rem] leading-snug animate-fade-in-fast">
               {error}
             </div>
           )}
@@ -113,7 +113,7 @@ export default function LocationSetup({ onReady }: Props) {
               </button>
             </div>
           ) : (
-            <div className="space-y-4">
+            <div className="space-y-4 animate-fade-in-fast">
               <div className="relative text-left">
                 <input
                   ref={inputRef}
@@ -129,12 +129,12 @@ export default function LocationSetup({ onReady }: Props) {
                   autoComplete="off"
                 />
                 {showSuggestions && (
-                  <ul className="absolute z-50 top-full left-0 right-0 mt-1.5 bg-white rounded-xl shadow-card border border-bark/5 overflow-hidden max-h-56 overflow-y-auto">
+                  <ul className="absolute z-50 top-full left-0 right-0 mt-1.5 bg-white rounded-xl shadow-card border border-bark/5 overflow-hidden max-h-56 overflow-y-auto animate-slide-down">
                     {suggestions.map((city, i) => (
                       <li
                         key={`${city.name}-${city.country}`}
                         onMouseDown={() => selectCity(city)}
-                        className={`px-4 py-3 cursor-pointer flex items-center justify-between transition-colors duration-150 ${
+                        className={`px-4 py-3 cursor-pointer flex items-center justify-between transition-colors duration-250 ${
                           i === highlighted ? "bg-teal/8 text-teal" : "hover:bg-sand/40"
                         }`}
                       >
@@ -155,9 +155,6 @@ export default function LocationSetup({ onReady }: Props) {
             </div>
           )}
         </div>
-        <p className="text-center text-bark/25 text-[0.6875rem] mt-8 tracking-wide">
-          Hanafi · Karachi method · Calculated locally
-        </p>
       </div>
     </div>
   );
