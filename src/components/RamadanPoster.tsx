@@ -43,9 +43,9 @@ export default function RamadanPoster({ location, onBack }: Props) {
   }
 
   return (
-    <div className="min-h-screen px-5 py-8">
-      <div className="max-w-3xl mx-auto">
-        <div className="flex items-center justify-between mb-6 animate-fade-in">
+    <div className="min-h-screen px-4 sm:px-5 py-6 sm:py-8">
+      <div className="w-full max-w-[min(48rem,calc(100vw-2rem))] sm:max-w-2xl lg:max-w-3xl mx-auto">
+        <div className="flex items-center justify-between gap-2 mb-5 sm:mb-6 animate-fade-in">
           <button
             onClick={onBack}
             className="text-bark/85 hover:text-bark flex items-center gap-1.5 text-[0.8125rem] transition-colors duration-250"
@@ -58,7 +58,7 @@ export default function RamadanPoster({ location, onBack }: Props) {
           <button
             onClick={handleExport}
             disabled={exporting}
-            className="py-2.5 px-5 bg-teal text-white rounded-xl text-[0.8125rem] font-medium hover:bg-teal-dark transition-all duration-250 disabled:opacity-50 flex items-center gap-2 shadow-soft"
+            className="py-2.5 px-4 sm:px-5 bg-teal text-white rounded-xl text-[0.75rem] sm:text-[0.8125rem] font-medium hover:bg-teal-dark transition-all duration-250 disabled:opacity-50 flex items-center gap-2 shadow-soft shrink-0"
           >
             {exporting ? (
               <>
@@ -78,7 +78,7 @@ export default function RamadanPoster({ location, onBack }: Props) {
 
         <div ref={posterRef} className="bg-cream rounded-[1.25rem] shadow-card overflow-hidden relative border border-gold/10 animate-reveal">
           <div className="poster-pattern" />
-          <div className="relative z-10 p-5 md:p-6">
+          <div className="relative z-10 p-4 sm:p-5 md:p-6">
             <div className="text-center mb-5 opacity-0 animate-fade-in [animation-fill-mode:forwards]" style={{ animationDelay: "0.25s" }}>
               <h1 className="font-display text-xl md:text-2xl font-semibold text-bark tracking-tight mb-0.5">
                 RAMADAN CALENDAR
@@ -99,14 +99,14 @@ export default function RamadanPoster({ location, onBack }: Props) {
                   className="max-w-[400px] w-[90%] h-auto opacity-[0.1] object-contain"
                 />
               </div>
-              <table className="w-full text-[0.6875rem] md:text-[0.75rem] relative z-10">
+              <table className="w-full max-[383px]:table-fixed text-[0.6875rem] md:text-[0.75rem] relative z-10">
                 <thead>
                   <tr>
-                    <th className="py-1.5 px-2 text-center font-semibold rounded-tl-lg bg-gold/35 text-bark w-12">RAMADAN</th>
-                    <th className="py-1.5 px-2 text-left font-semibold rounded-t bg-gold/35 text-bark">DATE</th>
-                    <th className="py-1.5 px-2 text-left font-semibold rounded-t bg-gold/35 text-bark">DAY</th>
-                    <th className="py-1.5 px-2 text-center font-semibold rounded-t bg-gold/35 text-bark">SEHRI</th>
-                    <th className="py-1.5 px-2 text-center font-semibold rounded-tr-lg bg-gold/35 text-bark">IFTAR</th>
+                    <th className="max-[383px]:w-[15%] py-1.5 px-2 text-center font-semibold rounded-tl-lg bg-gold/35 text-bark">RAMADAN</th>
+                    <th className="max-[383px]:w-[23%] py-1.5 px-2 text-left font-semibold rounded-t bg-gold/35 text-bark">DATE</th>
+                    <th className="max-[383px]:w-[24%] py-1.5 px-2 text-left font-semibold rounded-t bg-gold/35 text-bark">DAY</th>
+                    <th className="max-[383px]:w-[19%] py-1.5 px-2 text-center font-semibold rounded-t bg-gold/35 text-bark">SEHRI</th>
+                    <th className="max-[383px]:w-[19%] py-1.5 px-2 text-center font-semibold rounded-tr-lg bg-gold/35 text-bark">IFTAR</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -124,10 +124,10 @@ export default function RamadanPoster({ location, onBack }: Props) {
                             : "bg-transparent"
                         }`}
                       >
-                        <td className="py-1 px-2 text-center text-bark/75 font-semibold">
+                        <td className="py-1 px-1 text-center text-bark/75 font-semibold">
                           {String(row.roza).padStart(2, "0")} <span className="font-bold">ROZA</span>
                         </td>
-                        <td className="py-1 px-2 text-blue/70">{formatDateCompact(row.date)}</td>
+                        <td className="py-1 px-2 text-bark/70">{formatDateCompact(row.date)}</td>
                         <td className={`py-1 px-2 ${isFriday ? "text-teal font-semibold" : "text-gold-dark/90 font-semibold"}`}>
                           {row.dayName.toUpperCase()}
                         </td>

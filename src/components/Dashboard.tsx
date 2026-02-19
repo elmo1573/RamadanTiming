@@ -33,10 +33,10 @@ export default function Dashboard({ location, onReset }: Props) {
   }
 
   return (
-    <div className="min-h-screen px-5 py-10 md:py-14">
-      <div className="max-w-[28rem] mx-auto animate-fade-in">
-        <header className="flex items-center justify-between mb-10 animate-fade-in">
-          <div>
+    <div className="min-h-screen px-4 sm:px-5 py-8 sm:py-10 md:py-14">
+      <div className="w-full max-w-[28rem] sm:max-w-[32rem] lg:max-w-[36rem] mx-auto animate-fade-in">
+        <header className="flex items-center justify-between gap-3 mb-8 sm:mb-10 animate-fade-in">
+          <div className="min-w-0 flex-1">
             <h1 className="font-display text-display-lg font-semibold text-bark tracking-tight">
               Ramadan Timings
             </h1>
@@ -46,7 +46,7 @@ export default function Dashboard({ location, onReset }: Props) {
           </div>
           <button
             onClick={handleReset}
-            className="text-[0.75rem] text-bark/80 hover:text-bark border border-bark/8 rounded-lg px-3.5 py-2 hover:border-bark/20 hover:shadow-soft transition-all duration-250"
+            className="text-[0.75rem] text-bark/80 hover:text-bark border border-bark/8 rounded-lg px-3 py-2 sm:px-3.5 shrink-0 hover:border-bark/20 hover:shadow-soft transition-all duration-250"
           >
            <strong>Change location</strong>
           </button>

@@ -65,10 +65,10 @@ export default function LocationSetup({ onReady }: Props) {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center px-5 py-12">
-      <div className="w-full max-w-[22rem] animate-fade-in">
-        <div className="bg-white/90 backdrop-blur-md rounded-[1.25rem] shadow-card border border-gold/10 p-10 text-center transition-shadow duration-250 hover:shadow-cardHover animate-reveal">
-          <div className="mb-8">
+    <div className="min-h-screen flex items-center justify-center px-4 sm:px-5 py-10 sm:py-12">
+      <div className="w-full max-w-[min(22rem,calc(100vw-2rem))] sm:max-w-[24rem] lg:max-w-[26rem] animate-fade-in">
+        <div className="bg-white/90 backdrop-blur-md rounded-[1.25rem] shadow-card border border-gold/10 p-6 sm:p-8 md:p-10 text-center transition-shadow duration-250 hover:shadow-cardHover animate-reveal">
+          <div className="mb-6 sm:mb-8">
             <div className="w-14 h-14 mx-auto mb-5 rounded-full bg-teal/8 flex items-center justify-center ring-1 ring-teal/10 animate-breathe">
               <svg className="w-7 h-7 text-teal" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.25}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M21.752 15.002A9.72 9.72 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z" />
