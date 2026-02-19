@@ -126,6 +126,6 @@ export function searchCities(query: string): City[] {
   if (query.length < 2) return [];
   const q = query.toLowerCase();
   return CITIES.filter(
-    (c) => c.name.toLowerCase().includes(q) || c.country.toLowerCase().includes(q)
+    (c) => c.country === "Pakistan" && c.name.toLowerCase().includes(q)
   ).slice(0, 8);
 }

@@ -77,8 +77,9 @@ export default function LocationSetup({ onReady }: Props) {
             <h1 className="font-display text-display-lg font-semibold text-bark tracking-tight mb-2">
               Ramadan Timings
             </h1>
-            <p className="text-bark/55 text-[0.8125rem] leading-relaxed max-w-[16rem] mx-auto">
+            <p className="text-gold-dark/75 text-[0.8125rem] font-semibold leading-relaxed max-w-[16rem] mx-auto">
               Suhoor and Iftar for your location
+              (Pakistan Only)
             </p>
           </div>
 

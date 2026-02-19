@@ -26,10 +26,21 @@ export default function RamadanPoster({ location, onBack }: Props) {
     try {
       const html2canvas = (await import("html2canvas")).default;
       const canvas = await html2canvas(posterRef.current, {
-        scale: 2,
+        scale: 3,
         backgroundColor: "#FDF6EC",
         useCORS: true,
         logging: false,
+        onclone: (_doc: Document, el: HTMLElement) => {
+          el.classList.remove("opacity-0");
+          el.style.animation = "none";
+          el.querySelectorAll("*").forEach((child) => {
+            const h = child as HTMLElement;
+            h.classList.remove("opacity-0");
+            h.style.animation = "none";
+            h.style.animationFillMode = "none";
+            h.style.transition = "none";
+          });
+        },
       });
       const link = document.createElement("a");
       link.download = "ramadan-timings-2026.png";
